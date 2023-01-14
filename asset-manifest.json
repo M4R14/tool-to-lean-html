@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/tool-to-lean-html/static/css/main.f25c5b7a.css",
-    "main.js": "/tool-to-lean-html/static/js/main.bcd0cb58.js",
+    "main.css": "/tool-to-lean-html/static/css/main.64b5ffa9.css",
+    "main.js": "/tool-to-lean-html/static/js/main.532ec389.js",
     "react-syntax-highlighter/refractor-core-import.js": "/tool-to-lean-html/static/js/react-syntax-highlighter/refractor-core-import.13d9be33.chunk.js",
     "react-syntax-highlighter_languages_refractor_abap.js": "/tool-to-lean-html/static/js/react-syntax-highlighter_languages_refractor_abap.d1935e29.chunk.js",
     "react-syntax-highlighter_languages_refractor_actionscript.js": "/tool-to-lean-html/static/js/react-syntax-highlighter_languages_refractor_actionscript.3cdf46ac.chunk.js",
@@ -156,8 +156,8 @@
     "react-syntax-highlighter_languages_refractor_yaml.js": "/tool-to-lean-html/static/js/react-syntax-highlighter_languages_refractor_yaml.3881b976.chunk.js",
     "static/js/787.f5b0f1f8.chunk.js": "/tool-to-lean-html/static/js/787.f5b0f1f8.chunk.js",
     "index.html": "/tool-to-lean-html/index.html",
-    "main.f25c5b7a.css.map": "/tool-to-lean-html/static/css/main.f25c5b7a.css.map",
-    "main.bcd0cb58.js.map": "/tool-to-lean-html/static/js/main.bcd0cb58.js.map",
+    "main.64b5ffa9.css.map": "/tool-to-lean-html/static/css/main.64b5ffa9.css.map",
+    "main.532ec389.js.map": "/tool-to-lean-html/static/js/main.532ec389.js.map",
     "refractor-core-import.13d9be33.chunk.js.map": "/tool-to-lean-html/static/js/react-syntax-highlighter/refractor-core-import.13d9be33.chunk.js.map",
     "react-syntax-highlighter_languages_refractor_abap.d1935e29.chunk.js.map": "/tool-to-lean-html/static/js/react-syntax-highlighter_languages_refractor_abap.d1935e29.chunk.js.map",
     "react-syntax-highlighter_languages_refractor_actionscript.3cdf46ac.chunk.js.map": "/tool-to-lean-html/static/js/react-syntax-highlighter_languages_refractor_actionscript.3cdf46ac.chunk.js.map",
@@ -313,7 +313,7 @@
     "787.f5b0f1f8.chunk.js.map": "/tool-to-lean-html/static/js/787.f5b0f1f8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f25c5b7a.css",
-    "static/js/main.bcd0cb58.js"
+    "static/css/main.64b5ffa9.css",
+    "static/js/main.532ec389.js"
   ]
 }
