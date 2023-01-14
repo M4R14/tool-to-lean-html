@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import showdown from 'showdown';
 import './App.css';
-import { CopyBlock, dracula } from "react-code-blocks";
+import { CopyBlock, github } from "react-code-blocks";
 import { InputHtml } from './InputHtml';
 import { FileEditor } from './FileEditor';
-
+import { InpotHtmlV2 } from './InpotHtmlV2';
+import { convertHtmlToMarkdown } from './utils/convertHtmlToMarkdown.util';
 
 // get full screen height
 export function getScreenHeight() {
@@ -18,40 +18,6 @@ function PreviewHtml({ htmlText }) {
       <div dangerouslySetInnerHTML={{ __html: htmlText }} />
     </div>
   );
-}
-
-// convert rich html to lean html
-function convertHtmlToMarkdown(htmlText) {
-  const converter = new showdown.Converter();
-
-  // relpace &quot; with " " in htmlText
-  let html = htmlText.replace(/&quot;/g, "'");
-
-  // replace &nbsp; with " " in htmlText
-  html = html.replace(/&nbsp;/g, ' ');
-
-  // replace &amp; with " " in htmlText
-  html = html.replace(/&amp;/g, '');
-
-  // replace \n\n with <br> in htmlText
-  html = html.replace(/\n\n/g, '<br>');
-
-  do {
-    // remove span tag and keep its content
-    html = html.replace(/<span[^>]*>([^<]*)<\/span>/g, '$1');
-  } while (/<span[^>]*>([^<]*)<\/span>/g.test(html));
-
-  // convert html to markdown
-  let markdown = converter.makeMarkdown(html);
-
-  // convert markdown to html
-  html = converter.makeHtml(markdown);
-
-  // add tab to html list element <li>, <ul>, <ol>
-  html = html.replace(/<li>/g, '\t<li>');
-  html = html.replace(/<ol>/g, '\t<ol>');
-
-  return html;
 }
 
 function App() {
@@ -85,7 +51,8 @@ function App() {
       </div>
       <div className='App-layout' >
         <FileEditor fileName='rich-centent.html'>
-          <InputHtml onChange={val => setHtmlText(val)} />
+          <InpotHtmlV2 onChange={val => setHtmlText(val)} />
+          {/* <InputHtml onChange={val => setHtmlText(val)} /> */}
         </FileEditor>
         <FileEditor fileName='lrean-content.html'>
           {
@@ -96,7 +63,7 @@ function App() {
                   showLineNumbers={true}
                   wrapLines={true}
                   text={leanHtmlText || 'output markdown document'}
-                  theme={dracula}
+                  theme={github}
                   style={{
                     fontSize: '1rem',
                     height: `${getScreenHeight()}rem`,

@@ -1,5 +1,4 @@
 import React from 'react';
-import { getScreenHeight } from './App';
 
 const placeholder = `<h1 id="welcometomywebsite">Welcome to my website</h1>
 
