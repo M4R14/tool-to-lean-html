@@ -31,7 +31,7 @@ export function InputHtml(props) {
         setLine(lines);
     }, [htmlText]);
 
-    const rows = line || getScreenHeight();
+    const rows = line || placeholder.split('\n').length;
 
     return (
         <textarea
