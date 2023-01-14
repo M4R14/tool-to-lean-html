@@ -18,8 +18,33 @@ function PreviewHtml({ htmlText }) {
   );
 }
 
+const exampleHtml = `
+<h1>Article Title</h1>
+    <p>This is the introduction to the article.</p>
+    <h2>Section 1</h2>
+    <p>This is the first section of the article.</p>
+    <h2>Section 2</h2>
+    <p>This is the second section of the article.</p>
+    <h3>Subsection</h3>
+    <p>This is a subsection within the second section.</p>
+    <h4>List of items</h4>
+    <ul>
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+    </ul>
+    <h4>Steps to follow</h4>
+    <ol>
+      <li>Step 1</li>
+      <li>Step 2</li>
+      <li>Step 3</li>
+    </ol>
+    <h2>Section 3</h2>
+    <p>This is the final section of the article.</p>
+`;
+
 function App() {
-  const [htmlText, setHtmlText] = useState('');
+  const [htmlText, setHtmlText] = useState(exampleHtml);
   const [leanHtmlText, setLeanHtmlText] = useState('');
 
   useEffect(() => {
