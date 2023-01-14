@@ -11,21 +11,59 @@ export function getScreenHeight() {
   return Math.floor(window.innerHeight / 20);
 }
 
+// component prewiew html
+function PreviewHtml({ htmlText }) {
+  return (
+    <div className='PreviewHtml' >
+      <div dangerouslySetInnerHTML={{ __html: htmlText }} />
+    </div>
+  );
+}
+
+// convert rich html to lean html
+function convertHtmlToMarkdown(htmlText) {
+  const converter = new showdown.Converter();
+
+  // relpace &quot; with " " in htmlText
+  let html = htmlText.replace(/&quot;/g, "'");
+
+  // replace &nbsp; with " " in htmlText
+  html = html.replace(/&nbsp;/g, ' ');
+
+  // replace &amp; with " " in htmlText
+  html = html.replace(/&amp;/g, '');
+
+  // replace \n\n with <br> in htmlText
+  html = html.replace(/\n\n/g, '<br>');
+
+  do {
+    // remove span tag and keep its content
+    html = html.replace(/<span[^>]*>([^<]*)<\/span>/g, '$1');
+  } while (/<span[^>]*>([^<]*)<\/span>/g.test(html));
+
+  // convert html to markdown
+  let markdown = converter.makeMarkdown(html);
+
+  // convert markdown to html
+  html = converter.makeHtml(markdown);
+
+  // add tab to html list element <li>, <ul>, <ol>
+  html = html.replace(/<li>/g, '\t<li>');
+  html = html.replace(/<ol>/g, '\t<ol>');
+
+  return html;
+}
+
 function App() {
   const [htmlText, setHtmlText] = useState('');
   const [leanHtmlText, setLeanHtmlText] = useState('');
 
   useEffect(() => {
-    const converter = new showdown.Converter();
-
-    // convert html to markdown
-    const markdown = converter.makeMarkdown(htmlText);
-
-    // convert markdown to html
-    const html = converter.makeHtml(markdown);
+    // convert rich html to lean html
+    const leanHtml = convertHtmlToMarkdown(htmlText);
 
     // output html document
-    setLeanHtmlText(html);
+    setLeanHtmlText(leanHtml);
 
   }, [htmlText]);
 
@@ -65,11 +103,14 @@ function App() {
                   }}
                 />
               )
-              : <div style={{
-                color: 'gray',
-              }} >output lean html document</div>
+              : <div style={{ color: 'gray' }} >output lean html document</div>
           }
-
+        </FileEditor>
+        <FileEditor fileName='Preview Html | rich-content.html'>
+          <PreviewHtml htmlText={htmlText} />
+        </FileEditor>
+        <FileEditor fileName='Preview Html | lean-content.html'>
+          <PreviewHtml htmlText={leanHtmlText} />
         </FileEditor>
       </div>
       <footer>

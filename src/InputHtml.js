@@ -16,7 +16,23 @@ const placeholder = `<h1 id="welcometomywebsite">Welcome to my website</h1>
 
 // component input html document
 export function InputHtml(props) {
-    const rows = getScreenHeight();
+    const [htmlText, setHtmlText] = React.useState('');
+    const [line, setLine] = React.useState(0);
+
+    // handle input change
+    const onChange = (val) => {
+        setHtmlText(val);
+        props.onChange(val);
+    }
+
+    React.useEffect(() => {
+        // get number of lines in textarea
+        const lines = htmlText.split('\n').length;
+        setLine(lines);
+    }, [htmlText]);
+
+    const rows = line || getScreenHeight();
+
     return (
         <textarea
             style={{
@@ -26,9 +42,10 @@ export function InputHtml(props) {
                 border: 'none',
                 width: '100%',
                 height: '100%',
+                padding: '10px',
             }}
             rows={rows} cols="50" placeholder={placeholder}
-            onChange={(e) => { props.onChange(e.target.value); }}
-        ></textarea>
+            onChange={(e) => { onChange(e.target.value); }}
+        >{htmlText}</textarea>
     );
 }
