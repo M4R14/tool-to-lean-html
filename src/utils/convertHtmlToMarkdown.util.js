@@ -29,6 +29,9 @@ export function convertHtmlToMarkdown(htmlText) {
     // convert markdown to html
     html = converter.makeHtml(markdown);
 
+    // remove <!-- --> comments from html
+    html = html.replace(/<!--[\s\S]*?-->/g, '');
+
     // add tab to html list element <li>, <ul>, <ol>
     html = html.replace(/<li>/g, '\t<li>');
     html = html.replace(/<ol>/g, '\t<ol>');

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { CopyBlock, github } from "react-code-blocks";
-import { InputHtml } from './InputHtml';
-import { FileEditor } from './FileEditor';
-import { InpotHtmlV2 } from './InpotHtmlV2';
+import { FileEditor } from './components/FileEditor';
+import { InpotHtmlV2 } from './components/InpotHtmlV2';
 import { convertHtmlToMarkdown } from './utils/convertHtmlToMarkdown.util';
 
 // get full screen height
@@ -55,21 +53,10 @@ function App() {
           {/* <InputHtml onChange={val => setHtmlText(val)} /> */}
         </FileEditor>
         <FileEditor fileName='lrean-content.html'>
+
           {
             leanHtmlText
-              ? (
-                <CopyBlock
-                  language="html"
-                  showLineNumbers={true}
-                  wrapLines={true}
-                  text={leanHtmlText || 'output markdown document'}
-                  theme={github}
-                  style={{
-                    fontSize: '1rem',
-                    height: `${getScreenHeight()}rem`,
-                  }}
-                />
-              )
+              ? <InpotHtmlV2 value={leanHtmlText} />
               : <div style={{ color: 'gray' }} >output lean html document</div>
           }
         </FileEditor>
