@@ -2,45 +2,13 @@ import React, { useState, useEffect } from 'react';
 import showdown from 'showdown';
 import './App.css';
 import { CopyBlock, dracula } from "react-code-blocks";
+import { InputHtml } from './InputHtml';
+import { FileEditor } from './FileEditor';
 
 
 // get full screen height
-function getScreenHeight() {
+export function getScreenHeight() {
   return Math.floor(window.innerHeight / 20);
-}
-
-// component input html document
-function InputHtml(props) {
-  const rows = getScreenHeight();
-  return (
-    <textarea
-      style={{
-        backgroundColor: '#44475a',
-        color: '#f8f8f2',
-        borderRadius: '0px 0px 5px 5px',
-        border: 'none',
-        width: '100%',
-        height: '100%',
-      }}
-      rows={rows} cols="50" placeholder='input html document'
-      onChange={(e) => { props.onChange(e.target.value) }}
-    ></textarea>
-  );
-}
-
-
-// component: file editor
-function FileEditor(props) {
-  const { fileName } = props;
-
-  return (
-    <div className='FileEditor'>
-      <div className='FileEditor-header' >{fileName}</div>
-      <div className='FileEditor-body' >
-        {props.children}
-      </div>
-    </div>
-  );
 }
 
 function App() {
@@ -69,11 +37,14 @@ function App() {
       }}>
         Convert rich HTML to lean HTML
       </h1>
-      <p style={{
+      <div style={{
         textAlign: 'center',
-      }}>
-        Simplifying complex HTML code by removing unnecessary elements to reduce file size and improve performance.
-      </p>
+      }} >
+        <img src='https://hits.sh/m4r14.github.io/tool-to-lean-html.svg' />
+        <p>
+          Simplifying complex HTML code by removing unnecessary elements to reduce file size and improve performance.
+        </p>
+      </div>
       <div className='App-layout' >
         <FileEditor fileName='rich-centent.html'>
           <InputHtml onChange={val => setHtmlText(val)} />
@@ -88,6 +59,10 @@ function App() {
                   wrapLines={true}
                   text={leanHtmlText || 'output markdown document'}
                   theme={dracula}
+                  style={{
+                    fontSize: '1rem',
+                    height: `${getScreenHeight()}rem`,
+                  }}
                 />
               )
               : <div style={{
@@ -100,8 +75,9 @@ function App() {
       <footer>
         <p style={{
           textAlign: 'center',
+          padding: '1rem',
         }}>
-          <a href='' >Github</a>
+          Created by <a href='https://github.com/M4R14' target='_blank' rel='noreferrer' >M4R14</a>
         </p>
       </footer>
     </div >
